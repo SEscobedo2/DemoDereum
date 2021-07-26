@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       Title="MenuLista">
+   
 
     <Grid ShowGridLines="true">
         <Grid.ColumnDefinitions>
@@ -19,7 +20,8 @@
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Name="LBL" HorizontalAlignment="Left" Foreground="OrangeRed" FontWeight="Bold"></Label>
-        <ComboBox Grid.Column="0" Grid.Row="0" Name="cmboConsultas" Width="300">
+       
+        <ComboBox Grid.Column="0" Grid.Row="0" Name="cmboConsultas" Width="300" SelectionChanged="cmboConsultas_SelectedIndexChanged">
             <ComboBoxItem>Niños</ComboBoxItem>
             <ComboBoxItem>Jóvenes</ComboBoxItem>
             <ComboBoxItem>Adultos</ComboBoxItem>
@@ -30,11 +32,10 @@
             <ComboBoxItem>Personas con Sobrepeso</ComboBoxItem>
             <ComboBoxItem>Mujeres con bajo peso</ComboBoxItem>
             <ComboBoxItem>Niños con obesidad</ComboBoxItem>
-            <ComboBoxItem>Hombres con obesidad</ComboBoxItem>
-            <ComboBoxItem>Mujeres con obesidad</ComboBoxItem>
+            <ComboBoxItem>Todos los registros</ComboBoxItem>
         </ComboBox>
         <Button Grid.Column="0" Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click" Height="30" VerticalAlignment="Top">Nuevo</Button>
-        <Button Grid.Column="0" Grid.Row="2" Width="100" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top">Estadísticas</Button>
+        <Button Grid.Column="0" Grid.Row="2" Width="100" HorizontalAlignment="Right" Click="Button_Statistics" Height="30" VerticalAlignment="Top">Estadísticas</Button>
         
         <DataGrid Name="DG" AutoGenerateColumns="False" IsReadOnly="true" Grid.Column="0" Grid.Row="1" 
                   AlternatingRowBackground="LightSteelBlue" CanUserAddRows="False" ItemsSource="{Binding}">
@@ -46,7 +47,7 @@
                         <StackPanel Orientation="Horizontal">
                                 <Button CommandParameter="{Binding Path=id}" Click="Button_Click_1" Width="50" Height="20" 
                                         HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    Apagar
+                                    Borrar
                                 </Button>
                                 <Button CommandParameter="{Binding Path=id}" Click="Button_Edit" Width="50" Height="20"
                                     HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -56,9 +57,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Width="250" Header="Nome" Binding="{Binding Path=nome}"/>
-                <DataGridTextColumn Width="250" Header="Sobreome" Binding="{Binding Path=sobrenome}"/>
-                <DataGridTextColumn Width="170" Header="Telefone" Binding="{Binding Path=telefone}"/>
+                <DataGridTextColumn Width="150" Header="Nombre" Binding="{Binding Path=nombre}"/>
+                <DataGridTextColumn Width="150" Header="Apellido" Binding="{Binding Path=apellido}"/>
+                <DataGridTextColumn Width="150" Header="Fecha de nacimiento" Binding="{Binding Path=fechaNacimiento}"/>
+                <DataGridTextColumn Width="150" Header="Peso" Binding="{Binding Path=peso}"/>
+                <DataGridTextColumn Width="150" Header="Altura" Binding="{Binding Path=altura}"/>
+                <DataGridTextColumn Width="150" Header="Sexo" Binding="{Binding Path=sexo}"/>
+                <DataGridTextColumn Width="150" Header="Zona" Binding="{Binding Path=zona}"/>
             </DataGrid.Columns>
         </DataGrid>
         

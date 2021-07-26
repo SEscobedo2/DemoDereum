@@ -32,17 +32,20 @@
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" >Nombre</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="0" Name="txtNome"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="txtNombre"></TextBox>
         <TextBlock Grid.Column="0" Grid.Row="2" >Apellido</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="2" Name="txtSobrenome"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="4" >Curp</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="4" Name="txtTelefone"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="txtApellido"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="4" Name="txblkCurp">Curp</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="txtCurp"></TextBox>
         <TextBlock Grid.Column="0" Grid.Row="6" >Peso</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="6" Name="txtPeso"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="8" >altura</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="8" >Altura</TextBlock>
         <TextBox Grid.Column="1" Grid.Row="8" Name="txtAltura"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="10" >sexo</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="10" Name="txtSexo"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="10" >Sexo</TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="10" Name="txtSexo">
+            <ComboBoxItem>H</ComboBoxItem>
+            <ComboBoxItem>M</ComboBoxItem>
+        </ComboBox>
         <TextBlock Grid.Column="0" Grid.Row="12" >Zona</TextBlock>
         <ComboBox Grid.Column="1" Grid.Row="12" Name="txtZona">
             <ComboBoxItem>Norte</ComboBoxItem>

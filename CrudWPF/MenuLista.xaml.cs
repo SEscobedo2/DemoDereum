@@ -10,6 +10,9 @@ namespace CrudWPF
 	/// <summary>
 	/// Interação lógica para MenuLista.xam
 	/// </summary>
+	/// 
+
+
 	public partial class MenuLista : Page
 	{
 		public MenuLista()
@@ -20,7 +23,7 @@ namespace CrudWPF
 
 		private async void Refresh()
 		{
-			LBL.Content = "Carregando dados...";
+			LBL.Content = "Cargando datos...";
 
 			string jsonString = await RestHelper.GetALL();
 		
@@ -57,14 +60,86 @@ namespace CrudWPF
 
 		}
 
+		private void Button_Statistics(object sender, RoutedEventArgs e)
+		{
+			Estadísticas subWindow = new Estadísticas();
+			subWindow.Show();
+
+		}
+
+		private async void cmboConsultas_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+		{
+			LBL.Content = "Cargando datos...";
+
+			if (cmboConsultas.SelectedIndex > -1 && cmboConsultas.SelectedIndex < 4) //Filtrar por tipo de persona	
+			{
+				string[] category = new string[] { "Niño", "Joven", "Adulto", "Tercera-edad" };
+				string selectedCategory = "";
+
+				selectedCategory = category[cmboConsultas.SelectedIndex];
+
+				string jsonString = await RestHelper.GetByCategory(selectedCategory);
+
+				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+				if ( dt != null) DG.ItemsSource = dt.DefaultView;
+
+				
+			}
+
+			else if (cmboConsultas.SelectedIndex > 3 && cmboConsultas.SelectedIndex < 7) //Filtrar por zona
+			{
+				string[] zone = new string[] {"Norte", "Centro", "Sur" };
+				string selectedZone = "";
+
+				selectedZone = zone[cmboConsultas.SelectedIndex - 4];
+
+				string jsonString = await RestHelper.GetByZone(selectedZone);
+
+				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+				if (dt != null)  DG.ItemsSource = dt.DefaultView;
+			}
+
+			else if (cmboConsultas.SelectedIndex == 7) //Filtrar personas con sobrepeso
+			{
+				string jsonString = await RestHelper.GetByOverW();
+
+				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+				if (dt != null)  DG.ItemsSource = dt.DefaultView;
+			}
+
+			else if (cmboConsultas.SelectedIndex == 8) //Filtrar mujeres con bajo peso
+			{
+				string jsonString = await RestHelper.GetByWomenLow();
+
+				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+				if (dt != null) DG.ItemsSource = dt.DefaultView;
+			}
+			else if (cmboConsultas.SelectedIndex == 9) //Filtrar por niños obesos
+			{
+				
+				string jsonString = await RestHelper.GetObese("Niño");
+
+				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+				if (dt != null) DG.ItemsSource = dt.DefaultView;
+
+			}
+			else
+			{
+				Refresh();
+			}
+
+			LBL.Content = "";
+		}
+
 	}
 
 
-	public class EmployeeViewModel
+
+	public class PeopleViewModel
 	{
 		public Guid Id { get; set; }
-		public string Nome { get; set; }
-		public string Sobrenome { get; set; }
-		public string Telefone { get; set; }
+		public string Nombre { get; set; }
+		public string Apellido { get; set; }
+		public string FechaNacimiento { get; set; }
 	}
 }
