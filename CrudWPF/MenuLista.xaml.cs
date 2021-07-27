@@ -28,6 +28,7 @@ namespace CrudWPF
 			string jsonString = await RestHelper.GetALL();
 		
 			DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
+			
 			DG.ItemsSource = dt.DefaultView;
 
 			LBL.Content = "";

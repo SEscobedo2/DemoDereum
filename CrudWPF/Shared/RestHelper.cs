@@ -104,7 +104,7 @@ namespace CrudWPF.Shared
 		{
 			using (HttpClient client = new HttpClient())
 			{
-				using (HttpResponseMessage res = await client.GetAsync(apiURL + "people/lowweighwomen"))
+				using (HttpResponseMessage res = await client.GetAsync(apiURL + "people/lowweightwomen"))
 				{
 
 					using (HttpContent content = res.Content)
