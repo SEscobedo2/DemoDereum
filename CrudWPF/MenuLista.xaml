@@ -59,7 +59,9 @@
                 <DataGridTextColumn Width="150" Header="Nombre" Binding="{Binding Path=nombre}"/>
                 <DataGridTextColumn Width="150" Header="Apellido" Binding="{Binding Path=apellido}"/>
                 <DataGridTextColumn Width="150" Header="Fecha de nacimiento" Binding="{Binding Path=fechaNacimiento}"/>
+                <DataGridTextColumn Width="150" Header="Edad" Binding="{Binding Path=edad}"/>
                 <DataGridTextColumn Width="150" Header="Peso" Binding="{Binding Path=peso}"/>
+                <DataGridTextColumn Width="150" Header="Peso ideal" Binding="{Binding Path=peso-ideal}"/>
                 <DataGridTextColumn Width="150" Header="Altura" Binding="{Binding Path=altura}"/>
                 <DataGridTextColumn Width="150" Header="Sexo" Binding="{Binding Path=sexo}"/>
                 <DataGridTextColumn Width="150" Header="Zona" Binding="{Binding Path=zona}"/>

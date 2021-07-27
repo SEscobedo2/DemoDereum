@@ -89,6 +89,7 @@
     <Compile Include="Estadísticas.xaml.cs">
       <DependentUpon>Estadísticas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Functions\util.cs" />
     <Compile Include="Shared\RestHelper.cs" />
     <Page Include="Estadísticas.xaml">
       <SubType>Designer</SubType>

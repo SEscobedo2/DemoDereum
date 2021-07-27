@@ -1,9 +1,12 @@
 ﻿using CrudWPF.Shared;
+using CrudWPF.Functions;
 using Newtonsoft.Json;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+
 
 namespace CrudWPF
 {
@@ -15,6 +18,7 @@ namespace CrudWPF
 
 	public partial class MenuLista : Page
 	{
+		
 		public MenuLista()
 		{
 			InitializeComponent();
@@ -28,8 +32,8 @@ namespace CrudWPF
 			string jsonString = await RestHelper.GetALL();
 		
 			DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-			
-			DG.ItemsSource = dt.DefaultView;
+
+			DG.ItemsSource = util.DataExtention(dt.DefaultView);
 
 			LBL.Content = "";
 		}
@@ -82,7 +86,7 @@ namespace CrudWPF
 				string jsonString = await RestHelper.GetByCategory(selectedCategory);
 
 				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-				if ( dt != null) DG.ItemsSource = dt.DefaultView;
+				if ( dt != null) DG.ItemsSource = util.DataExtention(dt.DefaultView);
 
 				
 			}
@@ -97,7 +101,7 @@ namespace CrudWPF
 				string jsonString = await RestHelper.GetByZone(selectedZone);
 
 				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-				if (dt != null)  DG.ItemsSource = dt.DefaultView;
+				if (dt != null)  DG.ItemsSource = util.DataExtention(dt.DefaultView);
 			}
 
 			else if (cmboConsultas.SelectedIndex == 7) //Filtrar personas con sobrepeso
@@ -105,7 +109,7 @@ namespace CrudWPF
 				string jsonString = await RestHelper.GetByOverW();
 
 				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-				if (dt != null)  DG.ItemsSource = dt.DefaultView;
+				if (dt != null)  DG.ItemsSource = util.DataExtention(dt.DefaultView);
 			}
 
 			else if (cmboConsultas.SelectedIndex == 8) //Filtrar mujeres con bajo peso
@@ -113,7 +117,7 @@ namespace CrudWPF
 				string jsonString = await RestHelper.GetByWomenLow();
 
 				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-				if (dt != null) DG.ItemsSource = dt.DefaultView;
+				if (dt != null) DG.ItemsSource = util.DataExtention(dt.DefaultView);
 			}
 			else if (cmboConsultas.SelectedIndex == 9) //Filtrar por niños obesos
 			{
@@ -121,7 +125,7 @@ namespace CrudWPF
 				string jsonString = await RestHelper.GetObese("Niño");
 
 				DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonString);
-				if (dt != null) DG.ItemsSource = dt.DefaultView;
+				if (dt != null) DG.ItemsSource = util.DataExtention(dt.DefaultView);
 
 			}
 			else
@@ -134,13 +138,4 @@ namespace CrudWPF
 
 	}
 
-
-
-	public class PeopleViewModel
-	{
-		public Guid Id { get; set; }
-		public string Nombre { get; set; }
-		public string Apellido { get; set; }
-		public string FechaNacimiento { get; set; }
-	}
 }
